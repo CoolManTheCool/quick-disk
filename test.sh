@@ -54,7 +54,7 @@ for bs in "${BLOCK_SIZES[@]}"; do
     fi
 
     echo "📖 Read Test: bs=$bs count=$count (~${TARGET_SIZE_MB} MB)"
-    sync  # Flush file system cache
+    sync && echo 3 | sudo tee /proc/sys/vm/drop_caches  # Flush file system cache
 
     total_speed=0
     valid_runs=0
